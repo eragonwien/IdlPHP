@@ -18,9 +18,7 @@ function display($result)
 {
     $count = $result->rowCount();
     if ($count <= 0) {
-        echo json_encode(
-            array("message" => "No products found.")
-        );
+        header("HTTP/1.0 204 No Content");
         return;
     }
 
@@ -34,10 +32,12 @@ function display($result)
             "username" => $username,
             "firstname" => $firstname,
             "lastname" => $lastname,
-            "teamId" => $teamId,           
-            "teamName" => $teamName,           
+            "gender" => $gender,           
+            "image" => $image
         );
         array_push($heroes, $hero);
     }
-    echo json_encode($heroes);
+    $response = json_encode($heroes);
+    header("HTTP/1.0 200 O.K");
+    echo $response;
 }

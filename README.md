@@ -1,2 +1,3 @@
-# IdlPHP
-An idle RPG written in PHP
+# PHP Heroes
+This project consists of:
+* a RESTful-API providing heroes information

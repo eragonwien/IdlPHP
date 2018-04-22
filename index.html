@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <main>
+        <form action="/phpheroes/api/hero/create.php" method="post">
+            <input type="text" name="username" id="username" placeholder="username">
+            <input type="text" name="firstname" id="firstname" placeholder="firstname">
+            <input type="text" name="lastname" id="lastname" placeholder="lastname">
+            <select name="gender" id="gender">
+                <option value="true">male</option>
+                <option value="false">female</option>
+            </select>
+            <input type="hidden" name="image" id="image" value="default">
+            <input type="submit" value="create">
+        </form>
+    </main>
+</body>
+</html>
