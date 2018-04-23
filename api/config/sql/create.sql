@@ -21,7 +21,6 @@ CREATE TABLE heroes.hero_relation (
 	hero_id_1 INT NOT NULL,
     hero_id_2 INT NOT NULL,
     is_friendly BOOLEAN DEFAULT false,
-    is_rival BOOLEAN DEFAULT false,
     PRIMARY KEY (hero_id_1, hero_id_2),
     CONSTRAINT FK_hero FOREIGN KEY (hero_id_1) REFERENCES hero(id),
     CONSTRAINT FK_team FOREIGN KEY (hero_id_2) REFERENCES hero(id)
@@ -53,7 +52,9 @@ CREATE TABLE heroes.hero_ability (
 CREATE TABLE heroes.team (
 	id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL UNIQUE,
-    PRIMARY KEY (id)
+    leader_id INT,
+    PRIMARY KEY (id),
+    CONSTRAINT FK_team_leader FOREIGN KEY (leader_id) REFERENCES hero(id)
 );
 
 CREATE TABLE heroes.hero_team (
