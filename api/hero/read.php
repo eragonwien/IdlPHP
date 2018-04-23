@@ -11,10 +11,15 @@ $connection = $database->getConnection();
 
 $hero = new Hero($connection);
 
+if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
+    $heroes = $hero->getById(intval($_GET['id']));
+    display($heroes, false);
+    return;
+}
 $heroes = $hero->get();
 display($heroes);
 
-function display($result)
+function display($result, bool $isArray = true)
 {
     $count = $result->rowCount();
     if ($count <= 0) {
@@ -37,7 +42,12 @@ function display($result)
         );
         array_push($heroes, $hero);
     }
-    $response = json_encode($heroes);
     header("HTTP/1.0 200 O.K");
-    echo $response;
+    if ($isArray) {
+        $response = json_encode($heroes);
+        echo $response;
+    } else {
+        $response = json_encode($heroes[0]);
+        echo $response;
+    }
 }
