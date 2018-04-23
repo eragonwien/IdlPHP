@@ -1,10 +1,10 @@
-call heroes.load_heroes(10);
-call heroes.load_team(10);
-call heroes.load_ability(10);
-call heroes.load_alias(10);
-call heroes.load_hero_ability(10);
-call heroes.load_hero_team(10);
-call heroes.load_hero_relation(10);
+call heroes.load_heroes(100);
+call heroes.load_team(100);
+call heroes.load_ability(100);
+call heroes.load_alias(100);
+call heroes.load_hero_ability(100);
+call heroes.load_hero_team(100);
+call heroes.load_hero_relation(100);
 select count(*) from hero;
 select count(*) from ability;
 select count(*) from alias;
