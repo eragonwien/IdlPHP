@@ -47,7 +47,4 @@ function display($result, bool $isArray = true)
         $response = json_encode($abilities[0]);
         echo $response;
     }
-    
-
-    
 }

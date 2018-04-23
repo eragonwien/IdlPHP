@@ -6,7 +6,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
 include("../config/database.php");
-include("../objects/alias.php");
+include("../objects/ability.php");
 include("../objects/errorMessage.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -41,12 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $connection = $database->getConnection();
 
     // create hero
-    $alias = new Ability($connection);
-    $alias->setId($_POST['id']);
-    $alias->setName($_POST['name']);
-    $alias->setDescription($_POST['description']);
+    $ability = new Ability($connection);
+    $ability->setId($_POST['id']);
+    $ability->setName($_POST['name']);
+    $ability->setDescription($_POST['description']);
 
-    $result = $alias->update();
+    $result = $ability->update();
     $success = $result['success'];
     if (!$success) {
         header("HTTP/1.0 500 Internal Server Error");
