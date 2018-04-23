@@ -1,6 +1,19 @@
 {
-    "require-dev": {
+    "name": "eragonwien/phpheroes",
+    "description": "restful api of heroes of the marvel cinematic universe",
+    "type": "project",
+    "require": {
         "phpunit/phpunit": "^7.1",
         "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hoang Son Nguyen",
+            "email": "eragonwien@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test" : "phpunit --testdox test"
     }
 }
