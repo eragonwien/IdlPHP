@@ -129,7 +129,7 @@ class Hero {
         $result = null;
 
         try {
-            $query = "SELECT * FROM heroes.heroes_full";
+            $query = "SELECT * FROM heroes_full";
             $statement = $this->connection->prepare($query);
             $success = $statement->execute();
 
@@ -140,11 +140,9 @@ class Hero {
             } else {
                 $result = $statement;
             }
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $result['message'] = $e->getMessage();            
-        }
-        finally {
+        } finally {
             return $result;
         }
     }
@@ -158,7 +156,7 @@ class Hero {
         $result = null;
 
         try {
-            $query = "SELECT * FROM heroes.heroes_full WHERE id = :id";
+            $query = "SELECT * FROM heroes_full WHERE id = :id";
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $id);
             $success = $statement->execute();
@@ -170,11 +168,9 @@ class Hero {
             } else {
                 $result = $statement;
             }
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $result['message'] = $e->getMessage();            
-        }
-        finally {
+        } finally {
             return $result;
         }
     }
@@ -188,7 +184,7 @@ class Hero {
     public function create(){
         $result = array();
         try {
-            $query = "INSERT INTO heroes.hero (username, firstname, lastname, gender, image) VALUES (:username, :firstname, :lastname, :gender, :image)";
+            $query = "INSERT INTO hero (username, firstname, lastname, gender, image) VALUES (:username, :firstname, :lastname, :gender, :image)";
 
             $genderInt = ($this->gender) ? 1 : 0;
 
@@ -208,11 +204,9 @@ class Hero {
             } else {
                 $result['id'] = $this->connection->lastInsertId();
             }
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $result['message'] = $e->getMessage();
-        } 
-        finally {
+        } finally {
             return $result;
         }
     }
@@ -226,7 +220,7 @@ class Hero {
     public function update(){
         $result = array();
         try {
-            $query = "UPDATE heroes.hero SET username=:username, firstname=:firstname, lastname=:lastname, gender=:gender, image=:image WHERE id=:id";
+            $query = "UPDATE hero SET username=:username, firstname=:firstname, lastname=:lastname, gender=:gender, image=:image WHERE id=:id";
 
             $genderInt = ($this->gender) ? 1 : 0;
 
@@ -247,11 +241,9 @@ class Hero {
             } else {
                 $result['id'] = $this->connection->affectedRows();
             }
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $result['message'] = $e->getMessage();
-        } 
-        finally {
+        } finally {
             return $result;
         }
     }
@@ -262,12 +254,12 @@ class Hero {
      * on failure, returns error message
      * @return array result of the operation
      */
-    public function deleteById(int $id)
+    public function delete(int $id)
     {
         $result = null;
 
         try {
-            $query = "SELECT * FROM heroes.hero WHERE id = :id";
+            $query = "SELECT * FROM hero WHERE id = :id";
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $id);
             $success = $statement->execute();
@@ -279,11 +271,9 @@ class Hero {
             } else {
                 $result['id'] = $this->connection->affectedRows();
             }
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $result['message'] = $e->getMessage();            
-        }
-        finally {
+        } finally {
             return $result;
         }
     }

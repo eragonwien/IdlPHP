@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // create hero
     $hero = new Hero($connection);
 
-    $result = $hero->deleteById($_POST['id']);
+    $result = $hero->delete($_POST['id']);
     $success = $result['success'];
     if (!$success) {
         header("HTTP/1.0 500 Internal Server Error");
