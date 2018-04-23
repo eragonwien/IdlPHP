@@ -1,0 +1,23 @@
+call heroes.load_heroes(10);
+call heroes.load_team(10);
+call heroes.load_ability(10);
+call heroes.load_alias(10);
+call heroes.load_hero_ability(10);
+call heroes.load_hero_team(10);
+call heroes.load_hero_relation(10);
+select count(*) from hero;
+select count(*) from ability;
+select count(*) from alias;
+select count(*) from team;
+select * from hero;
+select * from ability;
+select * from alias;
+select * from team;
+select * from hero_ability;
+select * from hero_team;
+select * from hero_relation;
+select count(ability_id) from hero_ability group by hero_id having count(ability_id) > 1;
+select * from hero_ability group by hero_id, ability_id having count(*) > 1;
+select * from hero_team group by hero_id, team_id having count(*) > 1;
+select * from hero_relation group by hero_id_1, hero_id_2 having count(*) > 1;
+
