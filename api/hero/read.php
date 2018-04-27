@@ -1,10 +1,10 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json; charset=UTF-8');
 
-include_once("../config/database.php");
-include_once("../objects/hero.php");
+include_once('../config/database.php');
+include_once('../objects/hero.php');
 
 $database = new Database();
 $connection = $database->getConnection();
@@ -23,7 +23,7 @@ function display($result, bool $isArray = true)
 {
     $count = $result->rowCount();
     if ($count <= 0) {
-        header("HTTP/1.0 204 No Content");
+        header('HTTP/1.0 204 No Content');
         return;
     }
 
@@ -33,16 +33,16 @@ function display($result, bool $isArray = true)
         extract($row);
 
         $hero = array(
-            "id" => $id,
-            "username" => $username,
-            "firstname" => $firstname,
-            "lastname" => $lastname,
-            "gender" => $gender,           
-            "image" => $image
+            'id' => $id,
+            'username' => $username,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'gender' => $gender,           
+            'image' => $image
         );
         array_push($heroes, $hero);
     }
-    header("HTTP/1.0 200 O.K");
+    header('HTTP/1.0 200 O.K');
     if ($isArray) {
         $response = json_encode($heroes);
         echo $response;

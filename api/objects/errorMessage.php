@@ -35,8 +35,8 @@ class ErrorMessage
     public function get()
     {
         $result = array(
-            "message" => $this->message,
-            "errors" => $this->errors
+            'message' => $this->message,
+            'errors' => $this->errors
         );
         return $result;
     }

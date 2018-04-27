@@ -1,10 +1,10 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json; charset=UTF-8');
 
-include_once("../config/database.php");
-include_once("../objects/alias.php");
+include_once('../config/database.php');
+include_once('../objects/alias.php');
 
 $database = new Database();
 $connection = $database->getConnection();
@@ -23,7 +23,7 @@ function display($result, bool $isArray = true)
 {
     $count = $result->rowCount();
     if ($count <= 0) {
-        header("HTTP/1.0 204 No Content");
+        header('HTTP/1.0 204 No Content');
         return;
     }
 
@@ -33,13 +33,13 @@ function display($result, bool $isArray = true)
         extract($row);
 
         $alias = array(
-            "id" => $id,
-            "name" => $name,
-            "hero_id" => $hero_id
+            'id' => $id,
+            'name' => $name,
+            'hero_id' => $hero_id
         );
         array_push($aliases, $alias);
     }
-    header("HTTP/1.0 200 O.K");
+    header('HTTP/1.0 200 O.K');
     if ($isArray) {
         $response = json_encode($aliases);
         echo $response;

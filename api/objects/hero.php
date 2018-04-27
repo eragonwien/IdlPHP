@@ -129,7 +129,7 @@ class Hero {
         $result = null;
 
         try {
-            $query = "SELECT * FROM heroes_full";
+            $query = 'SELECT * FROM heroes_full';
             $statement = $this->connection->prepare($query);
             $success = $statement->execute();
 
@@ -156,7 +156,7 @@ class Hero {
         $result = null;
 
         try {
-            $query = "SELECT * FROM heroes_full WHERE id = :id";
+            $query = 'SELECT * FROM heroes_full WHERE id = :id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $id);
             $success = $statement->execute();
@@ -184,7 +184,7 @@ class Hero {
     public function create(){
         $result = array();
         try {
-            $query = "INSERT INTO hero (username, firstname, lastname, gender, image) VALUES (:username, :firstname, :lastname, :gender, :image)";
+            $query = 'INSERT INTO hero (username, firstname, lastname, gender, image) VALUES (:username, :firstname, :lastname, :gender, :image)';
 
             $genderInt = ($this->gender) ? 1 : 0;
 
@@ -220,7 +220,7 @@ class Hero {
     public function update(){
         $result = array();
         try {
-            $query = "UPDATE hero SET username=:username, firstname=:firstname, lastname=:lastname, gender=:gender, image=:image WHERE id=:id";
+            $query = 'UPDATE hero SET username=:username, firstname=:firstname, lastname=:lastname, gender=:gender, image=:image WHERE id=:id';
 
             $genderInt = ($this->gender) ? 1 : 0;
 
@@ -259,7 +259,7 @@ class Hero {
         $result = null;
 
         try {
-            $query = "SELECT * FROM hero WHERE id = :id";
+            $query = 'SELECT * FROM hero WHERE id = :id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $id);
             $success = $statement->execute();

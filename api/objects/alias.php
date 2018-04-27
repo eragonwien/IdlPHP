@@ -85,7 +85,7 @@ class Alias
     public function get() {
         $result = null;
         try {
-            $query = "SELECT * FROM alias";
+            $query = 'SELECT * FROM alias';
             $statement = $this->connection->prepare($query);
             $success = $statement->execute();
 
@@ -109,7 +109,7 @@ class Alias
     public function getById($id) {
         $result = null;
         try {
-            $query = "SELECT * FROM alias WHERE id=:id";
+            $query = 'SELECT * FROM alias WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $id);
             $success = $statement->execute();
@@ -134,7 +134,7 @@ class Alias
     public function getOfHero($heroId) {
         $result = null;
         try {
-            $query = "SELECT * FROM alias WHERE hero_id=:hero_id";
+            $query = 'SELECT * FROM alias WHERE hero_id=:hero_id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':hero_id', $heroId);
             $success = $statement->execute();
@@ -158,7 +158,7 @@ class Alias
     public function create() {
         $result = null;
         try {
-            $query = "INSERT INTO alias(name, hero_id) VALUES (:name, :hero_id)";
+            $query = 'INSERT INTO alias(name, hero_id) VALUES (:name, :hero_id)';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':hero_id', $this->heroId);
             $statement->bindParam(':name', $this->name);
@@ -184,7 +184,7 @@ class Alias
     public function update() {
         $result = null;
         try {
-            $query = "UPDATE alias SET hero_id=:hero_id, name=:name WHERE id=:id";
+            $query = 'UPDATE alias SET hero_id=:hero_id, name=:name WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $this->id);
             $statement->bindParam(':hero_id', $this->heroId);
@@ -211,7 +211,7 @@ class Alias
     public function delete($id) {
         $result = null;
         try {
-            $query = "DELETE FROM alias WHERE id=:id";
+            $query = 'DELETE FROM alias WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $this->id);
             $success = $statement->execute();

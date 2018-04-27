@@ -95,7 +95,7 @@ class Ability
     public function get() {
         $result = null;
         try {
-            $query = "SELECT * FROM ability";
+            $query = 'SELECT * FROM ability';
             $statement = $this->connection->prepare($query);
             $success = $statement->execute();
 
@@ -119,7 +119,7 @@ class Ability
     public function getById($id) {
         $result = null;
         try {
-            $query = "SELECT * FROM ability WHERE id=:id";
+            $query = 'SELECT * FROM ability WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $id);
             $success = $statement->execute();
@@ -144,7 +144,7 @@ class Ability
     public function getOfHero($heroId) {
         $result = null;
         try {
-            $query = "SELECT a.id, a.name, a.description FROM ability a INNER JOIN hero_ability ha WHERE ha.hero_id=:hero_id";
+            $query = 'SELECT a.id, a.name, a.description FROM ability a INNER JOIN hero_ability ha WHERE ha.hero_id=:hero_id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':hero_id', $heroId);
             $success = $statement->execute();
@@ -168,7 +168,7 @@ class Ability
     public function create() {
         $result = null;
         try {
-            $query = "INSERT INTO ability(name, description) VALUES (:name, :description)";
+            $query = 'INSERT INTO ability(name, description) VALUES (:name, :description)';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':description', $this->description);
             $statement->bindParam(':name', $this->name);
@@ -194,7 +194,7 @@ class Ability
     public function update() {
         $result = null;
         try {
-            $query = "UPDATE ability SET name=:name, description=:description WHERE id=:id";
+            $query = 'UPDATE ability SET name=:name, description=:description WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $this->id);
             $statement->bindParam(':description', $this->description);
@@ -221,7 +221,7 @@ class Ability
     public function delete($id) {
         $result = null;
         try {
-            $query = "DELETE FROM ability WHERE id=:id";
+            $query = 'DELETE FROM ability WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $this->id);
             $success = $statement->execute();

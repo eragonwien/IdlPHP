@@ -95,7 +95,7 @@ class Relation
     public function get() {
         $result = null;
         try {
-            $query = "SELECT * FROM hero_relation";
+            $query = 'SELECT * FROM hero_relation';
             $statement = $this->connection->prepare($query);
             $success = $statement->execute();
 
@@ -119,7 +119,7 @@ class Relation
     public function getById($heroId1, $heroId2) {
         $result = null;
         try {
-            $query = "SELECT * FROM hero_relation WHERE hero_id_1=:heroId1 AND hero_id_2=:heroId2";
+            $query = 'SELECT * FROM hero_relation WHERE hero_id_1=:heroId1 AND hero_id_2=:heroId2';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':heroId1', $heroId1);
             $statement->bindParam(':heroId2', $heroId2);
@@ -145,7 +145,7 @@ class Relation
     public function getOfHero($heroId) {
         $result = null;
         try {
-            $query = "SELECT * FROM hero_relation r WHERE r.hero_id_1=:hero_id OR r.hero_id_2=:hero_id";
+            $query = 'SELECT * FROM hero_relation r WHERE r.hero_id_1=:hero_id OR r.hero_id_2=:hero_id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':hero_id', $heroId);
             $success = $statement->execute();
@@ -169,7 +169,7 @@ class Relation
     public function create() {
         $result = null;
         try {
-            $query = "INSERT INTO hero_relation(hero_id_1, hero_id_2, is_friendly) VALUES (:heroId1, :heroId2, :isFriendly) ON DUPLICATE KEY UPDATE hero_id_1 = hero_id_1";
+            $query = 'INSERT INTO hero_relation(hero_id_1, hero_id_2, is_friendly) VALUES (:heroId1, :heroId2, :isFriendly) ON DUPLICATE KEY UPDATE hero_id_1 = hero_id_1';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':heroId1', $this->heroId1);
             $statement->bindParam(':heroId2', $this->heroId2);
@@ -194,7 +194,7 @@ class Relation
     public function update() {
         $result = null;
         try {
-            $query = "UPDATE hero_relation SET is_friendly=:isFriendly WHERE hero_id_1=:hero_id_1 AND hero_id_2=:hero_id_2";
+            $query = 'UPDATE hero_relation SET is_friendly=:isFriendly WHERE hero_id_1=:hero_id_1 AND hero_id_2=:hero_id_2';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $this->id);
             $statement->bindParam(':isFriendly', $this->isFriendly);
@@ -222,7 +222,7 @@ class Relation
     public function delete() {
         $result = null;
         try {
-            $query = "DELETE FROM hero_relation WHERE hero_id_1=:heroId1 OR hero_id_2=:heroId2";
+            $query = 'DELETE FROM hero_relation WHERE hero_id_1=:heroId1 OR hero_id_2=:heroId2';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':heroId1', $this->heroId1);
             $statement->bindParam(':heroId2', $this->heroId2);

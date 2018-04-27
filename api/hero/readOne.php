@@ -1,14 +1,14 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json; charset=UTF-8');
 
-include_once("../config/database.php");
-include_once("../objects/hero.php");
-include_once("../objects/errorMessage.php");
+include_once('../config/database.php');
+include_once('../objects/hero.php');
+include_once('../objects/errorMessage.php');
 
 if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-    header("HTTP/1.0 400 Bad Request");
+    header('HTTP/1.0 400 Bad Request');
     return;
 }
 
@@ -27,7 +27,7 @@ function display($result)
 {
     $count = $result->rowCount();
     if ($count <= 0) {
-        header("HTTP/1.0 204 No Content");
+        header('HTTP/1.0 204 No Content');
         return;
     }
 
@@ -35,15 +35,15 @@ function display($result)
     extract($row);
     
     $hero = array(
-        "id" => $id,
-        "username" => $username,
-        "firstname" => $firstname,
-        "lastname" => $lastname,
-        "gender" => $gender,           
-        "image" => $image  
+        'id' => $id,
+        'username' => $username,
+        'firstname' => $firstname,
+        'lastname' => $lastname,
+        'gender' => $gender,           
+        'image' => $image  
     );
 
     $response = json_encode($hero);
-    header("HTTP/1.0 200 O.K");
+    header('HTTP/1.0 200 O.K');
     echo $response;
 }

@@ -96,7 +96,7 @@ class Team
     public function get() {
         $result = null;
         try {
-            $query = "SELECT * FROM team";
+            $query = 'SELECT * FROM team';
             $statement = $this->connection->prepare($query);
             $success = $statement->execute();
 
@@ -120,7 +120,7 @@ class Team
     public function getById($id) {
         $result = null;
         try {
-            $query = "SELECT * FROM team WHERE id=:id";
+            $query = 'SELECT * FROM team WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $id);
             $success = $statement->execute();
@@ -145,7 +145,7 @@ class Team
     public function getOfHero($heroId) {
         $result = null;
         try {
-            $query = "SELECT t.id, t.name, t.leader_id FROM team t INNER JOIN hero_team ht WHERE ht.hero_id=:hero_id";
+            $query = 'SELECT t.id, t.name, t.leader_id FROM team t INNER JOIN hero_team ht WHERE ht.hero_id=:hero_id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':hero_id', $heroId);
             $success = $statement->execute();
@@ -169,7 +169,7 @@ class Team
     public function create() {
         $result = null;
         try {
-            $query = "INSERT INTO team(name, leader_id) VALUES (:name, :leader_id)";
+            $query = 'INSERT INTO team(name, leader_id) VALUES (:name, :leader_id)';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':leader_id', $this->leaderId);
             $statement->bindParam(':name', $this->name);
@@ -195,7 +195,7 @@ class Team
     public function update() {
         $result = null;
         try {
-            $query = "UPDATE team SET name=:name, leader_id=:leader_id WHERE id=:id";
+            $query = 'UPDATE team SET name=:name, leader_id=:leader_id WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $this->id);
             $statement->bindParam(':leader_id', $this->leaderId);
@@ -222,7 +222,7 @@ class Team
     public function delete($id) {
         $result = null;
         try {
-            $query = "DELETE FROM team WHERE id=:id";
+            $query = 'DELETE FROM team WHERE id=:id';
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':id', $this->id);
             $success = $statement->execute();
