@@ -1,7 +1,26 @@
-Options +FollowSymLinks
-RewriteEngine On
- 
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
- 
-RewriteRule ^.*$ ./index.php
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# Ability Routes
+RewriteRule ^abilities/?$ api/ability/read.php [nc,qsa]
+RewriteRule ^abilities/([0-9]+)/?$ api/ability/read.php?id=$1 [nc,qsa]
+
+# Alias Routes
+RewriteRule ^aliases/?$ api/alias/read.php [nc,qsa]
+RewriteRule ^aliases/([0-9]+)/?$ api/alias/read.php?id=$1 [nc,qsa]
+
+# Heroes Routes
+RewriteRule ^heroes/?$ api/hero/read.php [nc,qsa]
+RewriteRule ^heroes/([0-9]+)/?$ api/hero/read.php?id=$1 [nc,qsa]
+
+# Relationships Routes
+RewriteRule ^relations/?$ api/relation/read.php [nc,qsa]
+RewriteRule ^relations/([0-9]+)/?$ api/relation/read.php?id=$1 [nc,qsa]
+
+# Teams Routes
+RewriteRule ^teams/?$ api/team/read.php [nc,qsa]
+RewriteRule ^teams/([0-9]+)/?$ api/team/read.php?id=$1 [nc,qsa]
+
+# Images Routes
+RewriteRule ^images/([0-9]+)/?$ api/image/read.php?id=$1 [nc,qsa]

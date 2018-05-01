@@ -7,6 +7,7 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     
 include('../config/database.php');
 include('../objects/hero.php');
+include('../objects/image.php');
 include('../objects/errorMessage.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -42,6 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             return;
         }
     }
+
+    // delete the image with the ID
+    $image = new Image($_POST['id']);
+    $image->delete();
+
     header('HTTP/1.0 200 O.K');
     echo json_encode($result);
 }

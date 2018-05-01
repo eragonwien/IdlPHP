@@ -37,8 +37,7 @@ function display($result, bool $isArray = true)
             'username' => $username,
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'gender' => $gender,           
-            'image' => $image
+            'gender' => $gender      
         );
         array_push($heroes, $hero);
     }

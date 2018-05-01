@@ -7,7 +7,6 @@ class Hero {
     private $firstname;
     private $lastname;
     private $gender;
-    private $image;
 
     public function __construct($connection) {
         $this->connection = $connection;
@@ -104,24 +103,6 @@ class Hero {
     }
 
     /**
-     * Get the value of image
-     */ 
-    public function getImage(){
-        return $this->image;
-    }
-
-    /**
-     * Set the value of image
-     *
-     * @return  self
-     */ 
-    public function setImage($image){
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
      * get all heroes
      * @return array all heroes
      */
@@ -184,7 +165,7 @@ class Hero {
     public function create(){
         $result = array();
         try {
-            $query = 'INSERT INTO hero (username, firstname, lastname, gender, image) VALUES (:username, :firstname, :lastname, :gender, :image)';
+            $query = 'INSERT INTO hero (username, firstname, lastname, gender) VALUES (:username, :firstname, :lastname, :gender)';
 
             $genderInt = ($this->gender) ? 1 : 0;
 
@@ -193,7 +174,6 @@ class Hero {
             $statement->bindParam(':firstname', $this->firstname);
             $statement->bindParam(':lastname', $this->lastname);
             $statement->bindParam(':gender', $genderInt);
-            $statement->bindParam(':image', $this->image);
 
             $success = $statement->execute();
             $result['success'] = ($success) ? true : false;
@@ -220,7 +200,7 @@ class Hero {
     public function update(){
         $result = array();
         try {
-            $query = 'UPDATE hero SET username=:username, firstname=:firstname, lastname=:lastname, gender=:gender, image=:image WHERE id=:id';
+            $query = 'UPDATE hero SET username=:username, firstname=:firstname, lastname=:lastname, gender=:gender WHERE id=:id';
 
             $genderInt = ($this->gender) ? 1 : 0;
 
@@ -230,7 +210,6 @@ class Hero {
             $statement->bindParam(':firstname', $this->firstname);
             $statement->bindParam(':lastname', $this->lastname);
             $statement->bindParam(':gender', $genderInt);
-            $statement->bindParam(':image', $this->image);
 
             $success = $statement->execute();
             $result['success'] = ($success) ? true : false;
@@ -256,7 +235,7 @@ class Hero {
      */
     public function delete(int $id)
     {
-        $result = null;
+        $result = array();
 
         try {
             $query = 'SELECT * FROM hero WHERE id = :id';

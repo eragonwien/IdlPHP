@@ -24,7 +24,6 @@ final class HeroTest extends TestCase
             self::$hero->setFirstname("test");
             self::$hero->setLastname("person");
             self::$hero->setGender(1);
-            self::$hero->setImage("test");
         }
         
     }
@@ -36,8 +35,7 @@ final class HeroTest extends TestCase
                 "username" => self::$hero->getUsername(),
                 "firstname" => self::$hero->getFirstname(),
                 "lastname" => self::$hero->getLastname(),
-                "gender" => self::$hero->getGender(),
-                "image" => self::$hero->getImage(),
+                "gender" => self::$hero->getGender()
             ],
             'http_errors' => false
         ]);
@@ -52,7 +50,7 @@ final class HeroTest extends TestCase
 
     public function testCanGetHeroById()
     {
-        $response = $this->client->request('GET', "/phpheroes/api/hero/readOne.php?id=" . self::$hero->getId(), ['http_errors' => false]);
+        $response = $this->client->request('GET', "/phpheroes/api/hero/read.php?id=" . self::$hero->getId(), ['http_errors' => false]);
         $this->assertEquals(200, $response->getStatusCode());
 
         $body = (string) $response->getBody();
@@ -71,11 +69,11 @@ final class HeroTest extends TestCase
                 "username" => self::$hero->getUsername(),
                 "firstname" => self::$hero->getFirstname(),
                 "lastname" => self::$hero->getLastname(),
-                "gender" => self::$hero->getGender(),
-                "image" => self::$hero->getImage(),
+                "gender" => self::$hero->getGender()
             ],
             'http_errors' => false
         ]);
+
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -88,6 +86,7 @@ final class HeroTest extends TestCase
             'http_errors' => false
         ]);
 
+        $body = (string) $response->getBody();
         $this->assertEquals(200, $response->getStatusCode());
     }
 

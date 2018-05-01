@@ -7,7 +7,11 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     
 include('../config/database.php');
 include('../objects/hero.php');
+include_once('../objects/image.php');
 include('../objects/errorMessage.php');
+include_once('../shared/helper.php');
+
+$helper = new Helper();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = array();
@@ -20,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         array_push($errors, 'Firstname is required');
     }
 
-    if (empty($_POST['image'])) {
-        array_push($errors, 'Image is required');
+    if (empty($_POST['lastname'])) {
+        array_push($errors, 'Lastname is required');
     }
 
-    if (empty($_POST['gender'])) {
-        array_push($errors, 'gender is required');
-    }
 
+    if (!empty($_FILES["image"]["tmp_name"]) && !$helper->isFileValidImage($_FILES["image"]["tmp_name"])) {
+        array_push($errors, 'Image is missing or invalid');
+    }
 
     if ($errors) {
         header('HTTP/1.0 400 Bad Request');
@@ -47,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hero->setFirstname($_POST['firstname']);
     $hero->setLastname($_POST['lastname']);
     $hero->setGender($_POST['gender']);
-    $hero->setImage($_POST['image']);
 
     $result = $hero->create();
     $success = $result['success'];
@@ -60,6 +63,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             return;
         }
     }
+
+    if (!empty($_FILES["image"]["tmp_name"])) {
+        // upload the image with the new ID
+        $file = $_FILES["image"]["tmp_name"];
+        $image = new Image($result['id']);
+        $uploadSuccess = $image->create($file);
+
+        if (!$uploadSuccess) {
+            header('HTTP/1.0 500 Internal Server Error');
+            $errorMessage = ErrorMessage::singleError('Unable to upload image');
+            $response = $errorMessage->get();
+            echo json_encode($response);
+            return;
+        }
+    }
+    
+
     header('HTTP/1.0 200 O.K');
     echo json_encode($result);
 }
