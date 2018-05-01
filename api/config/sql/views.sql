@@ -1,8 +1,8 @@
-CREATE OR REPLACE VIEW heroes.heroes_full AS
+CREATE OR REPLACE VIEW heroes_full AS
 	SELECT 
 		h.id as id, h.username as username, h.firstname as firstname, h.lastname as lastname, h.gender as gender
     FROM 
-		heroes.hero h
+		hero h
 	ORDER BY id, username ASC;
     
-SELECT * FROM heroes.heroes_full;
+SELECT * FROM heroes_full;

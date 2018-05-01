@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "phpunit/phpunit": "^7.1",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "vlucas/phpdotenv": "^2.4"
     },
     "license": "MIT",
     "authors": [

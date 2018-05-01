@@ -1,9 +1,9 @@
-DROP PROCEDURE IF EXISTS heroes.load_team;
+DROP PROCEDURE IF EXISTS load_team;
 DELIMITER $$
-	CREATE PROCEDURE heroes.load_team(IN num int(4))
+	CREATE PROCEDURE load_team(IN num int(4))
 	BEGIN
 		DECLARE counter int(4) default 0;
-        DECLARE current_count int(4) default (SELECT count(1) FROM heroes.team);
+        DECLARE current_count int(4) default (SELECT count(1) FROM team);
 		DECLARE team_name varchar(50) default '';
 		DECLARE leader_id int(4) default 0;
 
@@ -13,7 +13,7 @@ DELIMITER $$
 		SET num = counter + num;
 		WHILE counter < num DO
 			SET team_name = concat('Team #',counter);
-            SET leader_id = (SELECT id FROM heroes.hero ORDER BY rand() LIMIT 1);
+            SET leader_id = (SELECT id FROM hero ORDER BY rand() LIMIT 1);
 			SET counter = counter + 1;
 	 
 			INSERT INTO team (name, leader_id) Values(team_name, leader_id);
@@ -24,13 +24,13 @@ DELIMITER ;
 
 
 
-DROP PROCEDURE IF EXISTS heroes.load_heroes;
+DROP PROCEDURE IF EXISTS load_heroes;
 DELIMITER $$
 
-CREATE PROCEDURE heroes.load_heroes(IN num int(4))
+CREATE PROCEDURE load_heroes(IN num int(4))
 	BEGIN
 		DECLARE counter int(4) default 0;
-		DECLARE current_count int(4) default (SELECT count(1) FROM heroes.hero);
+		DECLARE current_count int(4) default (SELECT count(1) FROM hero);
 		DECLARE username VARCHAR(45) default '';
 		DECLARE firstname VARCHAR(45) default 'first';
 		DECLARE lastname VARCHAR(45) default 'last';
@@ -54,13 +54,13 @@ $$
 DELIMITER ;
 
 
-DROP PROCEDURE IF EXISTS heroes.load_ability;
+DROP PROCEDURE IF EXISTS load_ability;
 DELIMITER $$
 
-CREATE PROCEDURE heroes.load_ability(IN num int(4))
+CREATE PROCEDURE load_ability(IN num int(4))
 	BEGIN
 		DECLARE counter int(4) default 0;
-		DECLARE current_count int(4) default (SELECT count(1) FROM heroes.hero);
+		DECLARE current_count int(4) default (SELECT count(1) FROM hero);
 		DECLARE name VARCHAR(45) default '';
         DECLARE description VARCHAR(45) default '';
 
@@ -81,13 +81,13 @@ $$
  
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS heroes.load_alias;
+DROP PROCEDURE IF EXISTS load_alias;
 DELIMITER $$
 
-CREATE PROCEDURE heroes.load_alias(IN num int(4))
+CREATE PROCEDURE load_alias(IN num int(4))
 	BEGIN
 		DECLARE counter int(4) default 0;
-		DECLARE current_count int(4) default (SELECT count(1) FROM heroes.hero);
+		DECLARE current_count int(4) default (SELECT count(1) FROM hero);
 		DECLARE hero_id int(4) default 0;
 		DECLARE name VARCHAR(45) default '';
 
@@ -97,7 +97,7 @@ CREATE PROCEDURE heroes.load_alias(IN num int(4))
 		SET num = counter + num;
 		WHILE counter < num DO
 			SET name = concat('Alias #',counter);
-            SET hero_id = (SELECT id FROM heroes.hero ORDER BY rand() LIMIT 1);
+            SET hero_id = (SELECT id FROM hero ORDER BY rand() LIMIT 1);
 			SET counter = counter + 1;
 	 
 			INSERT INTO alias (name, hero_id)
@@ -108,18 +108,18 @@ $$
  
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS heroes.load_hero_ability;
+DROP PROCEDURE IF EXISTS load_hero_ability;
 DELIMITER $$
 
-CREATE PROCEDURE heroes.load_hero_ability(IN num int(4))
+CREATE PROCEDURE load_hero_ability(IN num int(4))
 	BEGIN
 		DECLARE counter int(4) default 0;
 		DECLARE hero_id int(4) default 0;
 		DECLARE ability_id int(4) default 0;
 
 		WHILE counter < num DO
-            SET hero_id = (SELECT id FROM heroes.hero ORDER BY rand() LIMIT 1);
-            SET ability_id = (SELECT id FROM heroes.ability ORDER BY rand() LIMIT 1);
+            SET hero_id = (SELECT id FROM hero ORDER BY rand() LIMIT 1);
+            SET ability_id = (SELECT id FROM ability ORDER BY rand() LIMIT 1);
 			SET counter = counter + 1;
 	 
 			INSERT INTO hero_ability (hero_id, ability_id)
@@ -131,18 +131,18 @@ $$
 DELIMITER ;
 
 
-DROP PROCEDURE IF EXISTS heroes.load_hero_team;
+DROP PROCEDURE IF EXISTS load_hero_team;
 DELIMITER $$
 
-CREATE PROCEDURE heroes.load_hero_team(IN num int(4))
+CREATE PROCEDURE load_hero_team(IN num int(4))
 	BEGIN
 		DECLARE counter int(4) default 0;
 		DECLARE hero_id int(4) default 0;
 		DECLARE team_id int(4) default 0;
 
 		WHILE counter < num DO
-            SET hero_id = (SELECT id FROM heroes.hero ORDER BY rand() LIMIT 1);
-            SET team_id = (SELECT id FROM heroes.team ORDER BY rand() LIMIT 1);
+            SET hero_id = (SELECT id FROM hero ORDER BY rand() LIMIT 1);
+            SET team_id = (SELECT id FROM team ORDER BY rand() LIMIT 1);
 			SET counter = counter + 1;
 	 
 			INSERT INTO hero_team (hero_id, team_id)
@@ -153,10 +153,10 @@ $$
  
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS heroes.load_hero_relation;
+DROP PROCEDURE IF EXISTS load_hero_relation;
 DELIMITER $$
 
-CREATE PROCEDURE heroes.load_hero_relation(IN num int(4))
+CREATE PROCEDURE load_hero_relation(IN num int(4))
 	BEGIN
 		DECLARE counter int(4) default 0;
 		DECLARE hero_id_1 int(4) default 0;
@@ -164,8 +164,8 @@ CREATE PROCEDURE heroes.load_hero_relation(IN num int(4))
 		DECLARE is_friendly boolean default false;
 
 		WHILE counter < num DO
-            SET hero_id_1 = (SELECT id FROM heroes.hero ORDER BY rand() LIMIT 1);
-            SET hero_id_2 = (SELECT id FROM heroes.hero ORDER BY rand() LIMIT 1);
+            SET hero_id_1 = (SELECT id FROM hero ORDER BY rand() LIMIT 1);
+            SET hero_id_2 = (SELECT id FROM hero ORDER BY rand() LIMIT 1);
             SET is_friendly = (floor(rand()*10) % 2);
 			SET counter = counter + 1;
 	 

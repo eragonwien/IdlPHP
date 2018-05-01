@@ -1,14 +1,14 @@
 DROP TABLE IF EXISTS 
-	heroes.hero_relation, 
-    heroes.hero_ability, 
-    heroes.hero_team, 
-    heroes.team, 
-    heroes.ability, 
-    heroes.alias, 
-    heroes.hero,
-    heroes.image;
+	hero_relation, 
+    hero_ability, 
+    hero_team, 
+    team, 
+    ability, 
+    alias, 
+    hero,
+    image;
 
-CREATE TABLE heroes.hero (
+CREATE TABLE hero (
 	id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(45) NOT NULL UNIQUE,
     firstname VARCHAR(45) NOT NULL ,
@@ -17,7 +17,7 @@ CREATE TABLE heroes.hero (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE heroes.hero_relation (
+CREATE TABLE hero_relation (
 	hero_id_1 INT NOT NULL,
     hero_id_2 INT NOT NULL,
     is_friendly BOOLEAN DEFAULT false,
@@ -26,7 +26,7 @@ CREATE TABLE heroes.hero_relation (
     CONSTRAINT FK_team FOREIGN KEY (hero_id_2) REFERENCES hero(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE heroes.alias (
+CREATE TABLE alias (
 	id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL UNIQUE,
     hero_id INT NOT NULL,
@@ -34,14 +34,14 @@ CREATE TABLE heroes.alias (
     CONSTRAINT FK_Hero_Alias FOREIGN KEY (hero_id) REFERENCES hero(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE heroes.ability (
+CREATE TABLE ability (
 	id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL UNIQUE,
     description VARCHAR(45) NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE heroes.hero_ability (
+CREATE TABLE hero_ability (
 	hero_id INT NOT NULL,
     ability_id INT NOT NULL,
     PRIMARY KEY (hero_id, ability_id),
@@ -49,7 +49,7 @@ CREATE TABLE heroes.hero_ability (
     CONSTRAINT FK_ability_hero_ability FOREIGN KEY (ability_id) REFERENCES ability(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE heroes.team (
+CREATE TABLE team (
 	id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL UNIQUE,
     leader_id INT,
@@ -57,7 +57,7 @@ CREATE TABLE heroes.team (
     CONSTRAINT FK_team_leader FOREIGN KEY (leader_id) REFERENCES hero(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE heroes.hero_team (
+CREATE TABLE hero_team (
 	hero_id INT NOT NULL,
     team_id INT NOT NULL,
     PRIMARY KEY (hero_id, team_id),
